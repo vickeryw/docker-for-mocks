@@ -1,0 +1,25 @@
+version: "3"
+services:
+  generic:
+    image: mocks:0.0.1-SNAPSHOT
+    ports:
+      - "8081:8080"
+    networks:
+      - generic-mocks-network
+    depends_on:
+      - mocks-mongo
+
+  mocks-mongo:
+    image: mongo
+    networks:
+      - generic-mocks-network
+
+  admin:
+    image: admin:0.0.1-SNAPSHOT
+    ports:
+      - "8080:8080"
+    networks:
+      - generic-mocks-network
+
+networks:
+  generic-mocks-network:
